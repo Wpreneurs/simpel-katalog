@@ -1,31 +1,3 @@
-
-
-<script>//<![CDATA[
-window.initModal = function(){
-
-  const modal  = document.getElementById("orderModal");
-  const mTitle = document.getElementById("m-title");
-  const mPrice = document.getElementById("m-price");
-  const mImg   = document.getElementById("m-img");
-
-  window.openModal = function(nama, harga, img){
-    APP.currentProduct = { nama, harga };
-
-    mTitle.innerText = nama;
-    mPrice.innerText = "Rp " + Number(harga).toLocaleString('id-ID');
-    mImg.src = img;
-
-    modal.style.display = "flex";
-  };
-
-  document.querySelector(".close").onclick = () => modal.style.display="none";
-
-  window.onclick = (e)=>{
-    if(e.target===modal) modal.style.display="none";
-  };
-};
-//]]></script>
-
 <script>//<![CDATA[
 window.initWhatsapp = function(){
 
