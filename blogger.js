@@ -158,6 +158,14 @@ window.initTabs = function(){
 
 };
 //]]></script>
+<script>//<![CDATA[
+document.addEventListener("DOMContentLoaded", function(){
+  initSheets();
+  initModal();
+  initWhatsapp();
+  initTabs();
+});
+//]]></script>
 
 <script>
 //<![CDATA[
@@ -197,18 +205,7 @@ setInterval(updateClock,1000);
 
 });
 //]]>
-</script>
-
-
-<script>//<![CDATA[
-document.addEventListener("DOMContentLoaded", function(){
-  initSheets();
-  initModal();
-  initWhatsapp();
-  initTabs();
-});
-//]]></script>
-   
+</script>   
    <script>//<![CDATA[
 (async function(){
 
