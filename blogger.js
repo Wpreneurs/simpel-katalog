@@ -1,6 +1,5 @@
 <script>//<![CDATA[
 window.APP = {};
-
 document.addEventListener("DOMContentLoaded", function(){
 
   const phoneEl = document.getElementById("Whatsapp");
