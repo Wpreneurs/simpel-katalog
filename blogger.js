@@ -1,43 +1,4 @@
-  
-<script>
-//<![CDATA[
-window.addEventListener("load", function(){
 
-const clock = document.getElementById("clock");
-console.log("clock found:", clock);
-
-if (!clock) return;
-
-const timeEl = document.getElementById("clockTime");
-const dateEl = document.getElementById("clockDate");
-
-const hari = ["Minggu","Senin","Selasa","Rabu","Kamis","Jumat","Sabtu"];
-const bulan = ["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"];
-
-function updateClock(){
-
-  const now = new Date();
-
-  const h = String(now.getHours()).padStart(2,"0");
-  const m = String(now.getMinutes()).padStart(2,"0");
-  const s = String(now.getSeconds()).padStart(2,"0");
-
-  timeEl.textContent = `${h} : ${m} : ${s}`;
-
-  const d = now.getDate();
-  const day = hari[now.getDay()];
-  const month = bulan[now.getMonth()];
-  const y = now.getFullYear();
-
-  dateEl.textContent = `${day}, ${d} ${month} ${y}`;
-}
-
-updateClock();
-setInterval(updateClock,1000);
-
-});
-//]]>
-</script>
    
    <script>//<![CDATA[
 (async function(){
