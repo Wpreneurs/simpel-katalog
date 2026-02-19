@@ -1,6 +1,5 @@
 <script>//<![CDATA[
-window.APP = {};
-
+window.APP = window.APP || {};
 document.addEventListener("DOMContentLoaded", function(){
 
   const phoneEl = document.getElementById("Whatsapp");
@@ -19,25 +18,6 @@ document.addEventListener("DOMContentLoaded", function(){
 });
 //]]></script>
 
-<script>//<![CDATA[
-window.APP = {};
-document.addEventListener("DOMContentLoaded", function(){
-
-  const phoneEl = document.getElementById("Whatsapp");
-  APP.phone = phoneEl ? phoneEl.textContent.trim() : "";
-
-  const config = document.getElementById("sheet-config");
-
-  APP.sheets = [
-    { containerId:"product-list-1", url: config.dataset.sheet1 },
-    { containerId:"product-list-2", url: config.dataset.sheet2 },
-    { containerId:"product-list-3", url: config.dataset.sheet3 },
-    { containerId:"product-list-4", url: config.dataset.sheet4 }
-  ];
-
-  APP.currentProduct = {};
-});
-//]]></script>
 <script>//<![CDATA[
 window.initSheets = function(){
 
