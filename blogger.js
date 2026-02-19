@@ -1,39 +1,4 @@
 <script>//<![CDATA[
-window.initWhatsapp = function(){
-
-  const orderForm = document.getElementById("orderForm");
-
-  orderForm.onsubmit = function(e){
-    e.preventDefault();
-
-    const name = custName.value;
-    const addr = custAddress.value;
-    const qty  = custQty.value;
-
-    const p = APP.currentProduct;
-    const total = Number(p.harga) * Number(qty);
-
-    const msg = [
-      "*PESANAN BARU*",
-      "-----------------------------",
-      `*Produk:* ${p.nama}`,
-      `*Harga:* Rp ${Number(p.harga).toLocaleString('id-ID')}`,
-      `*Jumlah:* ${qty}`,
-      `*Total:* Rp ${total.toLocaleString('id-ID')}`,
-      "-----------------------------",
-      `*Nama:* ${name}`,
-      `*Alamat:* ${addr}`
-    ].join("\n");
-
-    window.open(`https://wa.me/${APP.phone}?text=${encodeURIComponent(msg)}`, "_blank");
-
-    orderForm.reset();
-    document.getElementById("orderModal").style.display="none";
-  };
-};
-//]]></script>
-
-<script>//<![CDATA[
 window.initTabs = function(){
 
   document.querySelectorAll(".tab-btn").forEach(btn=>{
