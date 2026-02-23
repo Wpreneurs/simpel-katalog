@@ -1,3 +1,374 @@
+<style>
+/* ===== GRID CONTAINER ===== */
+.product-grid{
+  display:grid;
+  gap:12px;
+  width: calc(100% - 20px);
+  max-width:700px;
+  margin:10px auto;
+padding:12px;
+background: rgba(234, 234, 234, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur( 8px );
+    border: 1px solid rgba(255, 255, 255, 0.18);
+border-radius:10px;
+  max-height: 400px;
+  overflow-y: auto;
+  /* default = mobile */
+  grid-template-columns: 1fr;
+}
+
+.product-grid::-webkit-scrollbar{
+  width:0px;
+  height:0px;
+}
+
+.product-grid{
+  -ms-overflow-style: none;  /* IE & Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+/* ===== DESKTOP 2 KOLOM ===== */
+@media(min-width:768px){
+  .product-grid{
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+
+/* ===== CARD ===== */
+.product-card{
+  display:flex;
+  gap:12px;
+ background-color:$(background.box.produk);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  background-image: url('https://blogger.googleusercontent.com/img/a/AVvXsEieKcVJisR35gdaiV6k_1gq3QbQ1DpFi03c1eolws74v4mpVyrMh018YHUdzguqXyMsGD0zq2uxwjKfb8FBWyxiZtHSyTG09vgFXBbFuZ18v8VgzOWOmMbcQPN32eU0MZ-RCx6dskEC0Q_U-NWQfkdQE1CrKQDRAiHW9sxYOTV30BLQiaG0RLnmS5fdprA');
+background-position:left;
+background-size: contain;
+background-repeat:no-repeat;
+  padding:14px 16px;
+  border-radius:10px;
+  position:relative;
+  align-items:center;margin-bottom: 0px;
+border-bottom: 0px solid #5b5c5c;box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+/* BADGE */
+.badge{
+  position:absolute;
+  top:-1px;
+  left:-1px;
+  background:$(badge.produk);
+  color:$(font.badge.produk);
+  padding:6px 12px;
+  border-radius:8px 0 8px 0 ;
+  font-size:10px;
+  font-weight:600;
+}
+
+.badge-right{
+  position:absolute;
+  top:-1px;
+  right:-1px;
+  background:$(badge.kanan);
+  color:$(font.badge.kanan);
+  padding:5px 5px 5px 8px;
+  border-radius:0 8px 0 18px  ;
+  font-size:10px;
+  font-weight:400;
+}
+
+/* IMAGE */
+.thumb{
+  width:100px;
+  height:100px;
+  flex-shrink:0;
+  background:#fff;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+.thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* INFO */
+.info{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+/* TITLE */
+.title{
+  font-family:'Montserrat',sans-serif;
+  font-size:16px;
+  font-weight:700;
+  color:$(judul.produk);
+  margin-bottom:1px;
+  display:-webkit-box;
+  -webkit-line-clamp:2;
+  -webkit-box-orient:vertical;
+  overflow:hidden;
+}
+
+.cart-icon{
+  display:inline-block;
+  width:18px;   /* CUSTOM SIZE */
+  height:18px;
+  margin-right:0px;
+  vertical-align:-2px;
+}
+
+.cart-icon svg{
+  width:100%;
+  height:100%;
+  fill:#FFC107; /* WARNA KUNING */
+}
+
+.cart-icon::before{
+  content:"";
+  display:block;
+  width:100%;
+  height:100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg' stroke='%23fff' stroke-width='0.00024000000000000003'%3E%3Cg id='SVGRepo_bgCarrier' stroke-width='0'%3E%3C/g%3E%3Cg id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'%3E%3C/g%3E%3Cg id='SVGRepo_iconCarrier'%3E%3Cpath d='M11 14.75C10.3096 14.75 9.74998 15.3096 9.74998 16C9.74998 16.6904 10.3096 17.25 11 17.25C11.6903 17.25 12.25 16.6904 12.25 16C12.25 15.3096 11.6903 14.75 11 14.75Z' fill='%23FFC107'%3E%3C/path%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M8.25014 6.01489C8.25005 6.00994 8.25 6.00498 8.25 6V5C8.25 2.92893 9.92893 1.25 12 1.25C14.0711 1.25 15.75 2.92893 15.75 5V6C15.75 6.00498 15.75 6.00994 15.7499 6.0149C17.0371 6.05353 17.8248 6.1924 18.4261 6.69147C19.2593 7.38295 19.4787 8.55339 19.9177 10.8943L20.6677 14.8943C21.2849 18.186 21.5934 19.8318 20.6937 20.9159C19.794 22 18.1195 22 14.7704 22H9.22954C5.88048 22 4.20595 22 3.30624 20.9159C2.40652 19.8318 2.71512 18.186 3.33231 14.8943L4.08231 10.8943C4.52122 8.55339 4.74068 7.38295 5.57386 6.69147C6.17521 6.19239 6.96288 6.05353 8.25014 6.01489ZM9.75 5C9.75 3.75736 10.7574 2.75 12 2.75C13.2426 2.75 14.25 3.75736 14.25 5V6C14.25 5.99999 14.25 6.00001 14.25 6C14.1747 5.99998 14.0982 6 14.0204 6H9.97954C9.90177 6 9.82526 6 9.75 6.00002C9.75 6.00002 9.75 6.00003 9.75 6.00002V5ZM13.75 10C13.75 9.58579 13.4142 9.25 13 9.25C12.5858 9.25 12.25 9.58579 12.25 10V13.5499C11.8749 13.3581 11.4501 13.25 11 13.25C9.4812 13.25 8.24998 14.4812 8.24998 16C8.24998 17.5188 9.4812 18.75 11 18.75C12.5188 18.75 13.75 17.5188 13.75 16V12.4501C14.125 12.6419 14.5499 12.75 15 12.75C15.4142 12.75 15.75 12.4142 15.75 12C15.75 11.5858 15.4142 11.25 15 11.25C14.3096 11.25 13.75 10.6904 13.75 10Z' fill='%23FFC107'%3E%3C/path%3E%3C/g%3E%3C/svg%3E"); no-repeat center;
+  background-size:contain;
+}
+
+.desc{
+  font-size:12px;
+  color:$(deskripsi.produk);
+  margin:4px 0;
+  display:block;
+}
+
+/* PRICE */
+.price{
+  margin-bottom:1px;
+}
+
+.old{
+  font-size:12px;
+  color:$(harga.coret);
+  text-decoration:line-through;
+  display:block;
+    line-height: 1.1;
+    margin-bottom: 5px;
+}
+
+.new{
+  font-size:15px;
+  font-weight:700;
+  color:$(harga.produk);
+}
+/* BUTTON */
+.buy{
+  width:100%;
+    display: flex;
+    justify-content: center;
+  padding:10px;
+  background:$(tombol.beli);
+  color:$(font.beli);
+  border:none;
+  border-radius:5px;
+  font-size:14px;
+  cursor:pointer;
+  margin-bottom:0px;
+  margin-top:5px;
+  font-family: 'Poppins', sans-serif;box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  
+}
+.buy svg{
+      width: 15px;
+    margin-right: 5px;
+    margin-top: 1px;
+}
+
+
+/* ===== MOBILE ===== */
+@media(max-width:600px){
+
+  .product-card{
+    gap:12px;
+    padding:11px;
+  }
+
+  .thumb{
+    width:120px;
+    height:120px;
+  }
+
+  .title{
+    font-size:14px;
+  }
+
+  .buy{
+    font-size:12px;
+    font-weight:600;
+  }
+}
+
+
+/* ===== MODAL ===== */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.25);
+  backdrop-filter: blur(6px);
+  justify-content:center;
+  align-items:center;
+  padding:16px;
+  z-index:9999;
+}
+
+.modal-box{
+ background: $(background.box.cart);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur( 8px );
+    border: 1px solid rgb(129 129 129 / 18%);
+  width:100%;
+  max-width:350px;
+  border-radius:10px;
+  padding:22px;
+  position:absolute;
+  bottom:90px;
+  animation:popup .3s ease;
+  box-shadow: 0px 20px 25px -10px rgba(0, 0, 0, 0.2);
+background-color: rgba(255, 255, 255, 1);
+}
+
+.close{
+  position:absolute;
+  right:14px;
+  top:8px;
+  font-size:22px;
+  cursor:pointer;
+}
+
+.modal-product{
+  display:flex;
+  gap:10px;
+  margin-bottom:12px;
+}
+
+.modal-product img{
+  width:70px;
+  height:70px;
+  border-radius:10px;
+  object-fit:cover;
+}
+
+#m-title {
+    color: $(judul.cart.produk);
+    font-weight: 700;
+	font-family:'montserrat';
+}
+
+#cart-icon{
+  display:inline-block;
+  width:18px;   /* CUSTOM SIZE */
+  height:18px;
+  margin-right:-2px;
+  vertical-align:-3px;
+}
+
+#cart-icon svg{
+  width:100%;
+  height:100%;
+  fill:#FFC107; /* WARNA KUNING */
+}
+
+#cart-icon::before{
+  content:"";
+  display:block;
+  width:100%;
+  height:100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg' stroke='%23fff' stroke-width='0.00024000000000000003'%3E%3Cg id='SVGRepo_bgCarrier' stroke-width='0'%3E%3C/g%3E%3Cg id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'%3E%3C/g%3E%3Cg id='SVGRepo_iconCarrier'%3E%3Cpath d='M11 14.75C10.3096 14.75 9.74998 15.3096 9.74998 16C9.74998 16.6904 10.3096 17.25 11 17.25C11.6903 17.25 12.25 16.6904 12.25 16C12.25 15.3096 11.6903 14.75 11 14.75Z' fill='%23FFC107'%3E%3C/path%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M8.25014 6.01489C8.25005 6.00994 8.25 6.00498 8.25 6V5C8.25 2.92893 9.92893 1.25 12 1.25C14.0711 1.25 15.75 2.92893 15.75 5V6C15.75 6.00498 15.75 6.00994 15.7499 6.0149C17.0371 6.05353 17.8248 6.1924 18.4261 6.69147C19.2593 7.38295 19.4787 8.55339 19.9177 10.8943L20.6677 14.8943C21.2849 18.186 21.5934 19.8318 20.6937 20.9159C19.794 22 18.1195 22 14.7704 22H9.22954C5.88048 22 4.20595 22 3.30624 20.9159C2.40652 19.8318 2.71512 18.186 3.33231 14.8943L4.08231 10.8943C4.52122 8.55339 4.74068 7.38295 5.57386 6.69147C6.17521 6.19239 6.96288 6.05353 8.25014 6.01489ZM9.75 5C9.75 3.75736 10.7574 2.75 12 2.75C13.2426 2.75 14.25 3.75736 14.25 5V6C14.25 5.99999 14.25 6.00001 14.25 6C14.1747 5.99998 14.0982 6 14.0204 6H9.97954C9.90177 6 9.82526 6 9.75 6.00002C9.75 6.00002 9.75 6.00003 9.75 6.00002V5ZM13.75 10C13.75 9.58579 13.4142 9.25 13 9.25C12.5858 9.25 12.25 9.58579 12.25 10V13.5499C11.8749 13.3581 11.4501 13.25 11 13.25C9.4812 13.25 8.24998 14.4812 8.24998 16C8.24998 17.5188 9.4812 18.75 11 18.75C12.5188 18.75 13.75 17.5188 13.75 16V12.4501C14.125 12.6419 14.5499 12.75 15 12.75C15.4142 12.75 15.75 12.4142 15.75 12C15.75 11.5858 15.4142 11.25 15 11.25C14.3096 11.25 13.75 10.6904 13.75 10Z' fill='%23FFC107'%3E%3C/path%3E%3C/g%3E%3C/svg%3E"); no-repeat center;
+  background-size:contain;
+}
+
+#m-price{
+  color:$(harga.cart.produk);
+  font-weight:700;
+  margin-top:5px;
+}
+
+#m-oldprice{
+  text-decoration: line-through;
+  font-size:13px;
+  opacity:.6;
+}
+
+.modal-badge{
+  background:#ff3b3b;
+  color:#fff;
+  display:inline-block;
+  padding:4px 8px;
+  border-radius:6px;
+  font-size:12px;
+  margin:6px 0;
+}
+
+.modal-desc{
+  font-size:13px;
+  margin:10px 20px;
+  line-height:1.5;
+  width: 100%;
+  margin: 10px 0;
+  border-top:1px solid #ddd;
+  border-radius:0px;
+  max-height:400px;
+  overflow-y:auto;
+  padding:10px 0;
+}
+
+/* sembunyikan scrollbar */
+.modal-desc::-webkit-scrollbar{
+  width:0px;
+  height:0px;
+}
+
+.modal-desc{
+  -ms-overflow-style: none;  /* IE & Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+#orderForm{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+#orderForm input,
+#orderForm textarea{
+  padding:9px;
+  border:1px solid #ddd;
+  border-radius:8px;
+  font-family: 'Poppins', 'sans-serif';
+}
+
+.submit-order{
+  background:$(tombol.beli.sekarang);
+  color:$(font.beli.sekarang);
+  border:none;
+  padding:15px;
+  border-radius:8px;
+  font-weight:600;
+  font-family: 'Poppins', 'sans-serif';
+  cursor: pointer;
+}
+
+.submit-order svg{
+ margin:0 5px -2px 0;
+}
+
 /* ===== BUTTON ===== */
 .tab-btn{
   flex:0 0 auto;
@@ -66,3 +437,304 @@
     min-width:95px;
   }
 }
+
+</style>
+
+<div class="tabs-wrapper">
+<div class="tabs-nav">
+
+<button class="tab-btn active" data-tab="tab1">Baju Pria</button>
+
+<button class="tab-btn" data-tab="tab2">Sepatu</button>
+
+<button class="tab-btn" data-tab="tab3">Laptop</button>
+
+<button class="tab-btn" data-tab="tab4">Handphone</button>
+
+</div></div>
+
+<!-- GANTI LINK DI BAWAH INI -->
+<div id="sheet-config"
+     data-sheet1="https://docs.google.com/spreadsheets/d/e/2PACX-1vSP1hb8sSdIZyrR6tNpIWXgidxIIlMjQx6r0Bmxtazmt09ap2qAVpX3_AuRxVp2CH35Dd_M_2cs08Rx/pub?gid=0&single=true&output=csv"
+     
+     data-sheet2="https://docs.google.com/spreadsheets/d/e/2PACX-1vSP1hb8sSdIZyrR6tNpIWXgidxIIlMjQx6r0Bmxtazmt09ap2qAVpX3_AuRxVp2CH35Dd_M_2cs08Rx/pub?gid=252254312&single=true&output=csv"
+
+     data-sheet3="https://docs.google.com/spreadsheets/d/e/2PACX-1vSP1hb8sSdIZyrR6tNpIWXgidxIIlMjQx6r0Bmxtazmt09ap2qAVpX3_AuRxVp2CH35Dd_M_2cs08Rx/pub?gid=1395752907&single=true&output=csv"
+
+     data-sheet4="https://docs.google.com/spreadsheets/d/e/2PACX-1vSP1hb8sSdIZyrR6tNpIWXgidxIIlMjQx6r0Bmxtazmt09ap2qAVpX3_AuRxVp2CH35Dd_M_2cs08Rx/pub?gid=288846570&single=true&output=csv">
+
+</div>
+
+<div id="tab1" class="tab-content active">
+<div id="product-list-1" class="product-grid"></div>
+</div>
+
+<div id="tab2" class="tab-content">
+<div id="product-list-2" class="product-grid"></div>
+</div>
+
+<div id="tab3" class="tab-content">
+<div id="product-list-3" class="product-grid"></div>
+</div>
+
+<div id="tab4" class="tab-content">
+<div id="product-list-4" class="product-grid"></div>
+</div>
+
+
+<!-- MODAL -->
+<div id="orderModal" class="modal">
+
+<div class="modal-box">
+
+<span class="close">×</span>
+<div class="modal-product">
+<img id="m-img" /><div>
+<div id="m-title"></div>
+<div id="m-badge" class="modal-badge"></div>
+<div id="m-oldprice"></div>
+<div id="m-price"></div>
+</div>
+</div>
+<div id="m-desc" class="modal-desc"></div>
+<h4>Pesan Sekarang :</h4>
+<form id="orderForm">
+
+<input id="custName" placeholder="Nama lengkap" required />
+
+<textarea id="custAddress" placeholder="Alamat lengkap" required></textarea>
+
+<input id="custQty" type="number" value="1" />
+
+<button class="submit-order">
+<svg height="14px" width="14px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewbox="0 0 512 512" xml:space="preserve" fill="#000000"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path style="fill:#EDEDED;" d="M0,512l35.31-128C12.359,344.276,0,300.138,0,254.234C0,114.759,114.759,0,255.117,0 S512,114.759,512,254.234S395.476,512,255.117,512c-44.138,0-86.51-14.124-124.469-35.31L0,512z"></path> <path style="fill:#55CD6C;" d="M137.71,430.786l7.945,4.414c32.662,20.303,70.621,32.662,110.345,32.662 c115.641,0,211.862-96.221,211.862-213.628S371.641,44.138,255.117,44.138S44.138,137.71,44.138,254.234 c0,40.607,11.476,80.331,32.662,113.876l5.297,7.945l-20.303,74.152L137.71,430.786z"></path> <path style="fill:#FEFEFE;" d="M187.145,135.945l-16.772-0.883c-5.297,0-10.593,1.766-14.124,5.297 c-7.945,7.062-21.186,20.303-24.717,37.959c-6.179,26.483,3.531,58.262,26.483,90.041s67.09,82.979,144.772,105.048 c24.717,7.062,44.138,2.648,60.028-7.062c12.359-7.945,20.303-20.303,22.952-33.545l2.648-12.359 c0.883-3.531-0.883-7.945-4.414-9.71l-55.614-25.6c-3.531-1.766-7.945-0.883-10.593,2.648l-22.069,28.248 c-1.766,1.766-4.414,2.648-7.062,1.766c-15.007-5.297-65.324-26.483-92.69-79.448c-0.883-2.648-0.883-5.297,0.883-7.062 l21.186-23.834c1.766-2.648,2.648-6.179,1.766-8.828l-25.6-57.379C193.324,138.593,190.676,135.945,187.145,135.945"></path> </g></svg>  Kirim Pesanan
+</button>
+
+</form>
+
+</div></div>
+
+<script>//<![CDATA[
+window.APP = window.APP || {};
+document.addEventListener("DOMContentLoaded", function(){
+
+  const phoneEl = document.getElementById("Whatsapp");
+  APP.phone = phoneEl ? phoneEl.textContent.trim() : "";
+
+  const config = document.getElementById("sheet-config");
+
+  APP.sheets = [
+    { containerId:"product-list-1", url: config.dataset.sheet1 },
+    { containerId:"product-list-2", url: config.dataset.sheet2 },
+    { containerId:"product-list-3", url: config.dataset.sheet3 },
+    { containerId:"product-list-4", url: config.dataset.sheet4 }
+  ];
+
+  APP.currentProduct = {};
+});
+//]]></script>
+
+<script>//<![CDATA[
+window.initSheets = function(){
+
+  APP.sheets.forEach(sheet => {
+    if (sheet.url && sheet.url.includes("https")) {
+      loadSheet(sheet);
+    }
+  });
+
+  function loadSheet(sheet){
+
+    const container = document.getElementById(sheet.containerId);
+    if (!container) return;
+
+    container.innerHTML = "Memuat data...";
+
+    fetch(sheet.url)
+      .then(res => res.text())
+      .then(csv => {
+
+        const rows = csv.split("\n").filter(r => r.trim()).slice(1);
+        container.innerHTML = "";
+
+        rows.forEach(row => {
+
+          const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+          if (cols.length < 4) return;
+
+                const nama   = cols[1]?.replace(/"/g, "").trim() || "";
+		const hargaCoret = cols[2]?.replace(/"/g, "").trim() || "";
+		const harga  = cols[3]?.replace(/"/g, "").trim() || "";
+		const img    = cols[4]?.replace(/"/g, "").trim() || "";
+		const badgeLeft  = cols[5]?.replace(/"/g, "").trim() || "";
+		const desk   = cols[6]?.replace(/"/g, "").trim() || "";
+		const badgeRight = cols[7]?.replace(/"/g, "").trim() || "";
+		const deskLong = cols[8]?.replace(/"/g, "").trim() || "";
+          const card = document.createElement("div");
+          card.className = "product-card";
+card.innerHTML = `
+
+    ${badgeLeft ? `<span class="badge">${badgeLeft}</span>` : ""}
+    ${badgeRight ? `<span class="badge-right">${badgeRight}</span>` : ""}
+
+    <div class="thumb">
+        <img src="${img}" onerror="this.src='https://via.placeholder.com/150?text=No+Image'">
+    </div>
+
+    <div class="info">
+
+        <div class="title">
+            <span class="cart-icon">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="#FFC107">
+                    <path d="M7 4h-2l-1 2h2l3.6 7.59-1.35 2.44c-.16.28-.25.61-.25.97 0 1.1.9 2 2 2h10v-2h-9.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h6.74c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.3.12-.48 0-.55-.45-1-1-1h-15.31l-.94-2z"/>
+                </svg>
+            </span>
+            ${nama}
+        </div>
+
+        ${desk ? `<span class="desc">${desk}</span>` : ""}
+
+        <div class="price">
+
+            ${hargaCoret ? `
+            <span class="old">
+                Rp ${Number(hargaCoret).toLocaleString('id-ID')}
+            </span>` : ""}
+
+            <span class="new">
+                Rp ${Number(harga).toLocaleString('id-ID')}
+            </span>
+
+        </div>
+              <button class="buy"><svg width="14px" height="14px" viewbox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M3.50002 12C3.50002 7.30558 7.3056 3.5 12 3.5C16.6944 3.5 20.5 7.30558 20.5 12C20.5 16.6944 16.6944 20.5 12 20.5C10.3278 20.5 8.77127 20.0182 7.45798 19.1861C7.21357 19.0313 6.91408 18.9899 6.63684 19.0726L3.75769 19.9319L4.84173 17.3953C4.96986 17.0955 4.94379 16.7521 4.77187 16.4751C3.9657 15.176 3.50002 13.6439 3.50002 12ZM12 1.5C6.20103 1.5 1.50002 6.20101 1.50002 12C1.50002 13.8381 1.97316 15.5683 2.80465 17.0727L1.08047 21.107C0.928048 21.4637 0.99561 21.8763 1.25382 22.1657C1.51203 22.4552 1.91432 22.5692 2.28599 22.4582L6.78541 21.1155C8.32245 21.9965 10.1037 22.5 12 22.5C17.799 22.5 22.5 17.799 22.5 12C22.5 6.20101 17.799 1.5 12 1.5ZM14.2925 14.1824L12.9783 15.1081C12.3628 14.7575 11.6823 14.2681 10.9997 13.5855C10.2901 12.8759 9.76402 12.1433 9.37612 11.4713L10.2113 10.7624C10.5697 10.4582 10.6678 9.94533 10.447 9.53028L9.38284 7.53028C9.23954 7.26097 8.98116 7.0718 8.68115 7.01654C8.38113 6.96129 8.07231 7.046 7.84247 7.24659L7.52696 7.52195C6.76823 8.18414 6.3195 9.2723 6.69141 10.3741C7.07698 11.5163 7.89983 13.314 9.58552 14.9997C11.3991 16.8133 13.2413 17.5275 14.3186 17.8049C15.1866 18.0283 16.008 17.7288 16.5868 17.2572L17.1783 16.7752C17.4313 16.5691 17.5678 16.2524 17.544 15.9269C17.5201 15.6014 17.3389 15.308 17.0585 15.1409L15.3802 14.1409C15.0412 13.939 14.6152 13.9552 14.2925 14.1824Z" fill="#ffffff"></path> </g></svg>Beli Sekarang</button>
+            </div>
+          `;
+
+          card.querySelector(".buy").onclick = () =>
+  openModal(nama, harga, img, hargaCoret, badgeRight, deskLong);
+
+          container.appendChild(card);
+        });
+      });
+  }
+};
+//]]></script>
+
+<script>//<![CDATA[
+window.initModal = function(){
+
+  const modal  = document.getElementById("orderModal");
+  const mTitle = document.getElementById("m-title");
+  const mPrice = document.getElementById("m-price");
+  const mOld   = document.getElementById("m-oldprice");
+  const mImg   = document.getElementById("m-img");
+  const mBadge = document.getElementById("m-badge");
+  const mDesc  = document.getElementById("m-desc");
+
+  window.openModal = function(nama, harga, img, hargaCoret, badgeRight, deskLong){
+
+    APP.currentProduct = { nama, harga };
+
+    mTitle.innerText = nama;
+    mPrice.innerText = "Rp " + Number(harga).toLocaleString('id-ID');
+    mImg.src = img;
+
+    // Harga coret
+    if(hargaCoret){
+      mOld.innerText = "Rp " + Number(hargaCoret).toLocaleString('id-ID');
+      mOld.style.display="block";
+    }else{
+      mOld.style.display="none";
+    }
+
+    // Badge kanan
+    if(badgeRight){
+      mBadge.innerText = badgeRight;
+      mBadge.style.display="inline-block";
+    }else{
+      mBadge.style.display="none";
+    }
+
+    // Deskripsi panjang
+    if(deskLong){
+      mDesc.innerHTML = deskLong;
+      mDesc.style.display="block";
+    }else{
+      mDesc.style.display="none";
+    }
+
+    modal.style.display = "flex";
+  };
+
+  document.querySelector(".close").onclick = () =>
+    modal.style.display="none";
+
+  window.onclick = (e)=>{
+    if(e.target===modal) modal.style.display="none";
+  };
+};
+//]]></script>
+
+<script>//<![CDATA[
+window.initWhatsapp = function(){
+
+  const orderForm = document.getElementById("orderForm");
+
+  orderForm.onsubmit = function(e){
+    e.preventDefault();
+
+    const name = custName.value;
+    const addr = custAddress.value;
+    const qty  = custQty.value;
+
+    const p = APP.currentProduct;
+    const total = Number(p.harga) * Number(qty);
+
+    const msg = [
+      "*PESANAN BARU*",
+      "-----------------------------",
+      `*Produk:* ${p.nama}`,
+      `*Harga:* Rp ${Number(p.harga).toLocaleString('id-ID')}`,
+      `*Jumlah:* ${qty}`,
+      `*Total:* Rp ${total.toLocaleString('id-ID')}`,
+      "-----------------------------",
+      `*Nama:* ${name}`,
+      `*Alamat:* ${addr}`
+    ].join("\n");
+
+    window.open(`https://wa.me/${APP.phone}?text=${encodeURIComponent(msg)}`, "_blank");
+
+    orderForm.reset();
+    document.getElementById("orderModal").style.display="none";
+  };
+};
+//]]></script>
+
+<script>//<![CDATA[
+window.initTabs = function(){
+
+  document.querySelectorAll(".tab-btn").forEach(btn=>{
+    btn.onclick = function(){
+
+      document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+      document.querySelectorAll(".tab-content").forEach(c=>c.classList.remove("active"));
+
+      this.classList.add("active");
+
+      const target = document.getElementById(this.dataset.tab);
+      if(target) target.classList.add("active");
+
+      this.scrollIntoView({behavior:"smooth",inline:"center",block:"nearest"});
+    };
+  });
+
+};
+//]]></script>
+<script>//<![CDATA[
+document.addEventListener("DOMContentLoaded", function(){
+  initSheets();
+  initModal();
+  initWhatsapp();
+  initTabs();
+});
+//]]></script>
